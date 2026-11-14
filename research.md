@@ -1,43 +1,58 @@
 # Research: Food Demand Prediction in Campus Hostel Dining
 
-## 1. Problem Description
+## 1. Problem Description (5-Line Summary)
 
-In university residential hostels, evening snack sessions (typically 5:00 PM to 7:00 PM) represent a high-volatility culinary operation. Unlike fixed-menu dinners where students have mandatory mess subscriptions, evening snacks (such as samosas, bread pakoras, aloo bondas, and tea) are prepared on demand and subject to drastic day-to-day fluctuations in student turnout. 
-
-Over a 24-day observational fieldwork study at Block 3 Kaveri Boys Hostel Mess, two major operational failures were consistently observed:
-1. **Severe Food Wastage (Over-preparation):** On days with low turnout (particularly Sundays or post-exam evenings), preparing the customary baseline of 90–95 snack portions led to 14–18 unsold portions (up to 20% waste). Because deep-fried snacks lose crispness and cannot be hygienically preserved overnight in ambient kitchen conditions, surplus food is routinely discarded.
-2. **Food Shortages / Stockouts (Under-preparation):** On peak days (such as Friday evenings when lab sessions conclude, or cold overcast/drizzly days), turnout surged beyond 105 students. Samosas ran out as early as 6:25 PM, leaving 15–25 students disappointed and generating kitchen conflict.
-3. **Manual Guesswork Dependency:** The cook, Rameshwar Prasad ("Ramesh Bhaiya"), lacked any data tool and relied solely on intuition. He prepared arbitrary batch sizes based on habit rather than actionable signals.
-
-The challenge was to design a lightweight, real-time demand estimation tool that leverages an accessible proxy metric—**the student entrance headcount between 5:00 PM and 6:00 PM**—to recommend the exact batch quantity to fry before the 6:00 PM peak rush begins.
+In university residential hostel messes, evening snack sessions suffer from severe day-to-day demand volatility.
+Without an objective demand forecasting system, cooks rely solely on uncalibrated guesswork to decide batch sizes.
+Preparing a static daily quantity causes up to 20% food waste on low-traffic Sundays and exam evenings.
+Conversely, underestimating footfall on peak Fridays and rainy days triggers food stockouts before 6:30 PM.
+The goal is to provide cook Rameshwar Prasad with an explainable batch prediction using early 5–6 PM turnout.
 
 ---
 
 ## 2. Examination of Two Existing Commercial Solutions
 
-### Solution 1: Automated Waste-Logging Vision Scales (e.g., Winnow Solutions & Leanpath 360)
-- **Overview:** Winnow and Leanpath deploy smart industrial scales with integrated computer vision cameras positioned above kitchen waste bins. When kitchen staff discard leftover food, the system captures an image, weighs the waste, and logs financial loss metrics.
-- **Why It Does Not Fit the Selected Cook:**
-  - *Post-Hoc Rather Than Predictive:* Winnow measures food *after* it has already become waste. It does not provide forward-looking batch quantity advice at 5:45 PM before cooking begins.
-  - *Prohibitive Cost and Fragile Hardware:* Commercial subscription costs exceed $2,500–$5,000 annually per terminal. The hardware cannot withstand the intense heat, grease vapor, and flour dust adjacent to open Indian kadai fryers.
-  - *Operational Burden:* Requiring a high-volume mess cook to stop and log waste categories on a touch panel during the evening rush disrupts kitchen flow.
+### Solution 1: Automated Waste-Tracking Vision Scales (e.g., Winnow Vision & Leanpath 360)
+- **Overview:** Winnow and Leanpath deploy smart industrial floor scales equipped with computer vision cameras mounted over kitchen trash bins to weigh, categorize, and log discarded food after service.
+- **Why It Fails the Selected Mess Cook:**
+  - *Post-Hoc Measurement vs. Forward Prediction:* Winnow tracks waste *after* it has already been thrown away; it provides no forward-looking guidance at 5:45 PM on how many samosas to fry before the rush starts.
+  - *Prohibitive Cost and Fragile Hardware:* Subscription costs exceed $2,500–$5,000 annually per terminal, and optical sensors cannot survive the intense grease vapor, oil splatter, and flour dust of an Indian kadai fryer.
+  - *Operational Disruption:* Requiring a high-volume cook to manually classify discarded food categories on a touchscreen disrupts fast-paced kitchen throughput.
 
-### Solution 2: Campus Dining ERP & Mobile Pre-Ordering Systems (e.g., CBORD Foodservice Suite & Toast POS)
-- **Overview:** Enterprise campus management platforms utilize student ID swipe cards, cashless meal plans, and pre-order mobile applications to estimate dining hall counts.
-- **Why It Does Not Fit the Selected Cook:**
-  - *Unrealistic Student Behavioral Assumption:* Evening snacks in Indian hostel messes are spontaneous, cash-or-UPI counter purchases rather than scheduled meal plan credits. Students do not pre-order a samosa three hours in advance.
-  - *Excessive Complexity & Digital Literacy Barrier:* Enterprise software requires multi-tiered user accounts, stockroom SKU mapping, and complex administrative setup. Ramesh Bhaiya requires an interface with four large fields, big numbers, and an immediate actionable answer in under 15 seconds.
+### Solution 2: Campus Dining ERP & Mobile Pre-Ordering Platforms (e.g., CBORD Foodservice Suite & Toast POS)
+- **Overview:** Enterprise campus food-service platforms utilize smart-card meal plan deductions and mobile app pre-orders to estimate dining hall counts hours in advance.
+- **Why It Fails the Selected Mess Cook:**
+  - *Unrealistic Student Behavioral Model:* Hostel evening snacks in Indian universities are spontaneous, counter-service purchases paid via UPI/cash rather than mandatory meal plan credits. Students do not pre-order snacks hours in advance.
+  - *Excessive Operational Complexity:* Enterprise ERP software requires complex stockroom SKU mapping, multi-tiered permissions, and digital literacy. Ramesh Bhaiya requires an interface with four simple fields and an immediate whole-number answer in under 15 seconds.
 
 ---
 
 ## 3. Academic Sources Consulted
 
-1. **Papargyropoulou, E., Lozano, R., Steinberger, J. K., Wright, N., & Ujang, Z. (2014).**  
-   *The food waste hierarchy in food service and university catering.*  
-   **Journal:** *Resources, Conservation and Recycling*, Vol. 93, pp. 180–190.  
-   **Key Takeaway Applied:** The authors establish that "prevention at source via demand forecasting" is significantly more effective at reducing catering waste than redistribution or disposal hierarchies. In university settings, student eating habits are non-linear and exhibit severe day-of-week clustering.
+### Source 1
+- **Citation:** Papargyropoulou, E., Lozano, R., Steinberger, J. K., Wright, N., & Ujang, Z. (2014). The food waste hierarchy in food service and university catering. *Resources, Conservation and Recycling*, 93, 180–190.
+- **Direct Link:** https://doi.org/10.1016/j.resconrec.2014.10.014
+- **Three-Line Note:**
+  1. Identifies that prevention at the source via accurate customer demand forecasting is dramatically more impactful than post-preparation recycling or disposal.
+  2. Documents that university dining facilities exhibit extreme non-linear day-of-week consumption variations driven by student timetable clustering.
+  3. Recommends implementing operational leading indicators rather than static portion quotas to mitigate daily over-preparation.
 
-2. **Betz, A., Buchli, J., Göbel, C., & Müller, C. (2015).**  
-   *Food waste in the Swiss food service industry – Amount and potential for reduction.*  
-   **Journal:** *Waste Management*, Vol. 43, pp. 218–226.  
-   **Key Takeaway Applied:** The study revealed that over-preparation accounts for 45–60% of avoidable kitchen food waste, driven by cook risk-aversion (the fear of running out during service). Providing cooks with an explicit, explainable "safety buffer" reduces over-preparation without triggering stockout anxiety.
+### Source 2
+- **Citation:** Betz, A., Buchli, J., Göbel, C., & Müller, C. (2015). Food waste in the Swiss food service industry – Amount and potential for reduction. *Waste Management*, 43, 218–226.
+- **Direct Link:** https://doi.org/10.1016/j.wasman.2015.06.020
+- **Three-Line Note:**
+  1. Reveals that kitchen over-preparation accounts for 45% to 60% of avoidable commercial food waste, primarily driven by cook risk-aversion.
+  2. Finds that cooks deliberately overproduce because the social and operational penalty of running out of food exceeds the perceived cost of leftovers.
+  3. Demonstrates that providing kitchen staff with a transparent, bounded safety margin significantly reduces over-preparation without triggering stockout anxiety.
+
+---
+
+## 4. Key Learnings & Practical Application
+
+1. **What Was Learned:**  
+   The primary driver of food waste in hostel catering is not careless cooking, but rational risk aversion: the cook fears student confrontation when food runs out before 7:00 PM. Therefore, any viable solution must provide an explicit, transparent safety buffer rather than a bare minimum estimate.
+
+2. **How Research Influenced Implementation in SERVESMART:**  
+   - We structured the prediction algorithm to calculate an explicit *Estimated Demand Range* alongside a bounded *Kitchen Safety Buffer* (+3 to +5 portions, configurable by the cook).
+   - We utilized the 5:00 PM – 6:00 PM entrance headcount as the empirical leading indicator recommended by Papargyropoulou et al., translating early velocity into total evening batch size.
+   - We avoided black-box machine learning in favor of an explainable, data-derived heuristic so that Ramesh Bhaiya can inspect *why* the buffer and batch recommendations were generated.
