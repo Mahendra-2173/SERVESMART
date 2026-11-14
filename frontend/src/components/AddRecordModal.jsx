@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Check } from 'lucide-react';
+import { X } from 'lucide-react';
 
 export default function AddRecordModal({ isOpen, onClose, onAddRecord }) {
   if (!isOpen) return null;
@@ -22,7 +22,6 @@ export default function AddRecordModal({ isOpen, onClose, onAddRecord }) {
     e.preventDefault();
     setError('');
 
-    // Validations
     if (!formData.date || !formData.day || !formData.weather || !formData.snack_type) {
       setError('Please fill all required fields.');
       return;
@@ -33,7 +32,7 @@ export default function AddRecordModal({ isOpen, onClose, onAddRecord }) {
     const stud = parseInt(formData.student_count, 10);
 
     if (isNaN(prep) || prep < 0 || isNaN(rem) || rem < 0 || isNaN(stud) || stud < 0) {
-      setError('Quantities and student count must be non-negative whole numbers.');
+      setError('Quantities and headcount must be non-negative whole numbers.');
       return;
     }
 
@@ -64,143 +63,136 @@ export default function AddRecordModal({ isOpen, onClose, onAddRecord }) {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <div className="modal-header">
-          <div className="modal-title">Record New Snack Observation</div>
-          <button className="close-btn" onClick={onClose}>
-            <X size={20} />
+    <div className="modal-backdrop">
+      <div className="modal-card">
+        <div className="modal-card-header">
+          <div style={{ fontWeight: 700, fontSize: '0.98rem', color: '#0f172a' }}>
+            Record New Evening Snack Observation
+          </div>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#64748b' }}>
+            <X size={18} />
           </button>
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="modal-body">
+          <div className="modal-card-body">
             {error && (
-              <div style={{ background: '#fef2f2', border: '1px solid #fecaca', color: '#dc2626', padding: '10px 14px', borderRadius: 8, marginBottom: 16, fontSize: '0.85rem' }}>
+              <div style={{ background: '#fef2f2', border: '1px solid #fecaca', color: '#dc2626', padding: '8px 12px', borderRadius: 6, marginBottom: 14, fontSize: '0.8rem' }}>
                 {error}
               </div>
             )}
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-              <div className="form-group">
-                <label className="form-label">Date</label>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              <div className="form-field">
+                <label className="field-label">Date</label>
                 <input
                   type="date"
-                  className="form-input"
+                  className="field-input"
                   value={formData.date}
                   onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                   required
                 />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Day of Week</label>
+              <div className="form-field">
+                <label className="field-label">Day</label>
                 <select
-                  className="form-select"
+                  className="field-select"
                   value={formData.day}
                   onChange={(e) => setFormData({ ...formData, day: e.target.value })}
                 >
-                  {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((d) => (
+                  {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(d => (
                     <option key={d} value={d}>{d}</option>
                   ))}
                 </select>
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-              <div className="form-group">
-                <label className="form-label">Weather Condition</label>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              <div className="form-field">
+                <label className="field-label">Weather</label>
                 <select
-                  className="form-select"
+                  className="field-select"
                   value={formData.weather}
                   onChange={(e) => setFormData({ ...formData, weather: e.target.value })}
                 >
-                  {['Sunny', 'Cloudy', 'Rainy', 'Drizzle', 'Humid'].map((w) => (
+                  {['Sunny', 'Cloudy', 'Rainy', 'Drizzle', 'Humid'].map(w => (
                     <option key={w} value={w}>{w}</option>
                   ))}
                 </select>
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Snack Item</label>
+              <div className="form-field">
+                <label className="field-label">Snack Item</label>
                 <select
-                  className="form-select"
+                  className="field-select"
                   value={formData.snack_type}
                   onChange={(e) => setFormData({ ...formData, snack_type: e.target.value })}
                 >
-                  {['Samosa', 'Bread Pakora', 'Aloo Bonda', 'Veg Cutlet', 'Onion Pakora'].map((s) => (
+                  {['Samosa', 'Bread Pakora', 'Aloo Bonda', 'Veg Cutlet', 'Onion Pakora'].map(s => (
                     <option key={s} value={s}>{s}</option>
                   ))}
                 </select>
               </div>
             </div>
 
-            <div className="form-group">
-              <label className="form-label">
-                5:00 PM – 6:00 PM Student Turnout (Entrance Headcount)
-              </label>
+            <div className="form-field">
+              <label className="field-label">5–6 PM Headcount</label>
               <input
                 type="number"
                 min="0"
-                className="form-input"
+                className="field-input"
                 value={formData.student_count}
                 onChange={(e) => setFormData({ ...formData, student_count: e.target.value })}
                 required
               />
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-              <div className="form-group">
-                <label className="form-label">Portions Prepared</label>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              <div className="form-field">
+                <label className="field-label">Portions Prepared</label>
                 <input
                   type="number"
                   min="0"
-                  className="form-input"
+                  className="field-input"
                   value={formData.prepared_quantity}
                   onChange={(e) => setFormData({ ...formData, prepared_quantity: e.target.value })}
                   required
                 />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Remaining at 7:00 PM</label>
+              <div className="form-field">
+                <label className="field-label">Remaining at 7 PM</label>
                 <input
                   type="number"
                   min="0"
-                  className="form-input"
+                  className="field-input"
                   value={formData.remaining_quantity}
-                  onChange={(e) => {
-                    const rem = parseInt(e.target.value, 10);
-                    setFormData({
-                      ...formData,
-                      remaining_quantity: e.target.value,
-                      sold_out: rem === 0,
-                    });
-                  }}
+                  onChange={(e) => setFormData({ ...formData, remaining_quantity: e.target.value })}
                   required
                 />
               </div>
             </div>
 
-            <div style={{ marginTop: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ marginTop: 4, display: 'flex', alignItems: 'center', gap: 6 }}>
               <input
                 type="checkbox"
-                id="sold_out_chk"
-                checked={formData.sold_out}
+                id="sold_out_modal"
+                checked={formData.sold_out || formData.remaining_quantity === 0}
                 onChange={(e) => setFormData({ ...formData, sold_out: e.target.checked })}
               />
-              <label htmlFor="sold_out_chk" style={{ fontSize: '0.88rem', color: '#334155', cursor: 'pointer' }}>
-                Food ran out before 7:00 PM (Stockout)
+              <label htmlFor="sold_out_modal" style={{ fontSize: '0.8rem', color: '#475569', cursor: 'pointer' }}>
+                Snack ran out before 7:00 PM (Stockout)
               </label>
             </div>
           </div>
 
-          <div className="modal-footer">
-            <button type="button" className="secondary-btn" onClick={onClose}>
+          <div className="modal-card-footer">
+            <button type="button" className="btn-secondary" onClick={onClose} style={{ marginRight: 8 }}>
               Cancel
             </button>
-            <button type="submit" className="primary-action-btn" disabled={submitting}>
-              {submitting ? 'Saving...' : 'Add to Fieldwork Log'}
+            <button type="submit" className="btn-primary" style={{ width: 'auto', padding: '8px 16px' }} disabled={submitting}>
+              {submitting ? 'Saving...' : 'Save Observation'}
             </button>
           </div>
         </form>

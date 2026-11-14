@@ -1,92 +1,71 @@
 import React from 'react';
-import { 
-  UtensilsCrossed, 
-  Flame, 
-  LayoutDashboard, 
-  BarChart3, 
-  Database, 
-  History, 
-  BookOpen,
-  Wifi,
-  WifiOff
-} from 'lucide-react';
+import { UtensilsCrossed, Flame, BarChart2, Table2, BookOpen, WifiOff } from 'lucide-react';
 
 export default function Navbar({ activeTab, setActiveTab, onOpenFieldwork, backendConnected, onRetryBackend }) {
   const tabs = [
-    { id: 'predict', label: "⚡ Cook's Predictor", icon: Flame },
-    { id: 'overview', label: '📊 Dashboard Overview', icon: LayoutDashboard },
-    { id: 'analytics', label: '📈 Analytics & Evaluation', icon: BarChart3 },
-    { id: 'records', label: '📋 Fieldwork Data (24 Days)', icon: Database },
-    { id: 'history', label: '🕒 Prediction History', icon: History },
+    { id: 'predict', label: 'Batch Predictor', icon: Flame },
+    { id: 'analytics', label: 'Analytics & Accuracy', icon: BarChart2 },
+    { id: 'records', label: 'Field Records (24 Days)', icon: Table2 },
   ];
 
   return (
     <header className="app-header">
-      <div className="header-top">
-        <div className="brand-section">
+      <div className="header-inner">
+        <div className="brand">
           <div className="brand-icon">
-            <UtensilsCrossed size={24} />
+            <UtensilsCrossed size={20} />
           </div>
           <div>
-            <div className="brand-title">
-              SERVESMART
-              <span className="brand-tag">Hostel Mess System</span>
-            </div>
-            <div className="brand-subtitle">
-              Smart Food Demand & Batch Prediction System for Hostel Cooks
-            </div>
+            <div className="brand-title">ServeSmart</div>
+            <div className="brand-subtitle">Smart Food Demand & Batch Prediction</div>
           </div>
         </div>
 
-        <div className="header-actions">
-          <button 
-            className="secondary-btn" 
-            style={{ padding: '7px 14px', fontSize: '0.82rem' }}
-            onClick={onOpenFieldwork}
-          >
-            <BookOpen size={16} />
-            Fieldwork & Cook Profile
+        <div className="header-right">
+          <button className="btn-secondary" onClick={onOpenFieldwork}>
+            <BookOpen size={14} />
+            Cook & Fieldwork Notes
           </button>
 
           {backendConnected ? (
-            <div className="header-pill live-dot">
-              Backend Connected (Port 5001)
-            </div>
+            <span style={{ fontSize: '0.78rem', color: '#16a34a', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 5 }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#16a34a' }}></span>
+              Connected (Port 5001)
+            </span>
           ) : (
-            <button 
+            <button
               onClick={onRetryBackend}
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 6,
+                fontSize: '0.75rem',
+                color: '#dc2626',
                 background: '#fef2f2',
                 border: '1px solid #fecaca',
-                color: '#dc2626',
-                padding: '6px 12px',
+                padding: '4px 10px',
                 borderRadius: 999,
-                fontSize: '0.8rem',
                 fontWeight: 600,
-                cursor: 'pointer'
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 4,
               }}
-              title="Click to retry connecting to backend at http://127.0.0.1:5001"
             >
-              <WifiOff size={14} />
-              Backend Offline (Port 5001) • Retry
+              <WifiOff size={12} />
+              Offline • Retry
             </button>
           )}
         </div>
       </div>
 
-      <nav className="nav-bar">
+      <nav className="tabs-container">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           return (
             <button
               key={tab.id}
-              className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
+              className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}
               onClick={() => setActiveTab(tab.id)}
             >
-              <Icon size={18} />
+              <Icon size={16} />
               {tab.label}
             </button>
           );
