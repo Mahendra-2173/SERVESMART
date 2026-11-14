@@ -274,4 +274,18 @@ def update_history(item_id):
         return jsonify({"success": False, "error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    import socket
+    port = int(os.environ.get("PORT", 5001))
+    host = "127.0.0.1"
+    
+    # Verify port availability or fallback
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.bind((host, port))
+    except OSError:
+        port = 5050
+
+    print("=" * 60)
+    print(f" * SERVESMART Flask API running on http://{host}:{port}")
+    print("=" * 60)
+    app.run(host=host, port=port, debug=False)

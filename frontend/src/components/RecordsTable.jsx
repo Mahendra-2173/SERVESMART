@@ -25,6 +25,44 @@ export default function RecordsTable({ records, onOpenAddModal }) {
     return 'badge cloudy';
   };
 
+  const handleExportCSV = () => {
+    const exportData = filtered.length > 0 ? filtered : records;
+    if (!exportData || exportData.length === 0) {
+      alert('No records available to export.');
+      return;
+    }
+
+    const headers = [
+      'date', 'day', 'weather', 'student_count',
+      'prepared_quantity', 'remaining_quantity', 'sold_quantity',
+      'sold_out', 'snack_type'
+    ];
+
+    const csvLines = [headers.join(',')];
+    exportData.forEach((row) => {
+      csvLines.push([
+        row.date,
+        row.day,
+        row.weather,
+        row.student_count,
+        row.prepared_quantity,
+        row.remaining_quantity,
+        row.sold_quantity,
+        row.sold_out,
+        `"${row.snack_type}"`
+      ].join(','));
+    });
+
+    const blob = new Blob([csvLines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.href = url;
+    downloadAnchor.setAttribute('download', 'servesmart_fieldwork_data.csv');
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    document.body.removeChild(downloadAnchor);
+  };
+
   return (
     <div className="table-panel">
       <div className="table-toolbar">
@@ -68,15 +106,14 @@ export default function RecordsTable({ records, onOpenAddModal }) {
         </div>
 
         <div style={{ display: 'flex', gap: 10 }}>
-          <a
-            href={api.getExportUrl()}
-            download="messmate_fieldwork_data.csv"
+          <button
+            onClick={handleExportCSV}
             className="secondary-btn"
-            style={{ padding: '8px 14px', textDecoration: 'none' }}
+            style={{ padding: '8px 14px', cursor: 'pointer' }}
           >
             <Download size={15} />
             Export CSV
-          </a>
+          </button>
 
           <button
             className="primary-action-btn"

@@ -6,10 +6,12 @@ import {
   BarChart3, 
   Database, 
   History, 
-  BookOpen 
+  BookOpen,
+  Wifi,
+  WifiOff
 } from 'lucide-react';
 
-export default function Navbar({ activeTab, setActiveTab, onOpenFieldwork }) {
+export default function Navbar({ activeTab, setActiveTab, onOpenFieldwork, backendConnected, onRetryBackend }) {
   const tabs = [
     { id: 'predict', label: "⚡ Cook's Predictor", icon: Flame },
     { id: 'overview', label: '📊 Dashboard Overview', icon: LayoutDashboard },
@@ -45,9 +47,33 @@ export default function Navbar({ activeTab, setActiveTab, onOpenFieldwork }) {
             <BookOpen size={16} />
             Fieldwork & Cook Profile
           </button>
-          <div className="header-pill live-dot">
-            Block 3 Kaveri Mess Live
-          </div>
+
+          {backendConnected ? (
+            <div className="header-pill live-dot">
+              Backend Connected (Port 5001)
+            </div>
+          ) : (
+            <button 
+              onClick={onRetryBackend}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                background: '#fef2f2',
+                border: '1px solid #fecaca',
+                color: '#dc2626',
+                padding: '6px 12px',
+                borderRadius: 999,
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                cursor: 'pointer'
+              }}
+              title="Click to retry connecting to backend at http://127.0.0.1:5001"
+            >
+              <WifiOff size={14} />
+              Backend Offline (Port 5001) • Retry
+            </button>
+          )}
         </div>
       </div>
 

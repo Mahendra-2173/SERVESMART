@@ -150,7 +150,7 @@ python -m pip install -r requirements.txt
 # Run the automated 22-test verification suite
 python test_app.py
 
-# Start the Flask API server (runs on port 5000)
+# Start the Flask API server (runs on port 5001; avoids Windows port 5000 reservation)
 python app.py
 ```
 

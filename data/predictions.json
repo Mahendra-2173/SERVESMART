@@ -1,5 +1,19 @@
 [
   {
+    "id": "pred-9f7caed0",
+    "date": "2026-10-30",
+    "day": "Friday",
+    "weather": "Sunny",
+    "snack_type": "Samosa",
+    "student_count": 105,
+    "recommended_quantity": 115,
+    "actual_prepared": 115,
+    "actual_consumed": 110,
+    "remaining_quantity": 5,
+    "status": "Evaluated",
+    "notes": "Automated unit test record"
+  },
+  {
     "id": "pred-8f89284a",
     "date": "2026-10-30",
     "day": "Friday",
