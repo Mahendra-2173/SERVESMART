@@ -1,0 +1,25 @@
+date,day,weather,student_count,prepared_quantity,remaining_quantity,sold_quantity,sold_out,snack_type
+2026-10-05,Monday,Sunny,78,90,8,82,False,Samosa
+2026-10-06,Tuesday,Sunny,82,95,7,88,False,Samosa
+2026-10-07,Wednesday,Cloudy,74,85,11,74,False,Bread Pakora
+2026-10-08,Thursday,Rainy,92,100,0,100,True,Onion Pakora
+2026-10-09,Friday,Sunny,104,110,4,106,False,Samosa
+2026-10-10,Saturday,Sunny,62,75,18,57,False,Aloo Bonda
+2026-10-11,Sunday,Cloudy,44,60,16,44,False,Bread Pakora
+2026-10-12,Monday,Sunny,85,95,6,89,False,Samosa
+2026-10-13,Tuesday,Drizzle,96,105,0,105,True,Bread Pakora
+2026-10-14,Wednesday,Sunny,80,90,9,81,False,Samosa
+2026-10-15,Thursday,Cloudy,88,95,5,90,False,Veg Cutlet
+2026-10-16,Friday,Rainy,112,110,0,110,True,Samosa
+2026-10-17,Saturday,Cloudy,58,70,14,56,False,Onion Pakora
+2026-10-18,Sunday,Sunny,40,55,13,42,False,Aloo Bonda
+2026-10-19,Monday,Sunny,81,90,7,83,False,Samosa
+2026-10-20,Tuesday,Cloudy,76,85,8,77,False,Veg Cutlet
+2026-10-21,Wednesday,Rainy,95,95,0,95,True,Onion Pakora
+2026-10-22,Thursday,Sunny,84,95,10,85,False,Samosa
+2026-10-23,Friday,Sunny,108,115,5,110,False,Samosa
+2026-10-24,Saturday,Sunny,66,75,11,64,False,Bread Pakora
+2026-10-25,Sunday,Rainy,48,60,6,54,False,Aloo Bonda
+2026-10-26,Monday,Sunny,79,90,9,81,False,Samosa
+2026-10-27,Tuesday,Sunny,86,95,5,90,False,Samosa
+2026-10-28,Wednesday,Cloudy,83,90,6,84,False,Veg Cutlet

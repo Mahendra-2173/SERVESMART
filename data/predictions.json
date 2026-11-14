@@ -1,0 +1,44 @@
+[
+  {
+    "id": "pred-1",
+    "date": "2026-10-26",
+    "day": "Monday",
+    "weather": "Sunny",
+    "snack_type": "Samosa",
+    "student_count": 79,
+    "recommended_quantity": 90,
+    "actual_prepared": 90,
+    "actual_consumed": 81,
+    "remaining_quantity": 9,
+    "status": "Evaluated",
+    "notes": "Recommendation matched actual preparation. 9 samosas leftover within normal margin."
+  },
+  {
+    "id": "pred-2",
+    "date": "2026-10-27",
+    "day": "Tuesday",
+    "weather": "Sunny",
+    "snack_type": "Samosa",
+    "student_count": 86,
+    "recommended_quantity": 95,
+    "actual_prepared": 95,
+    "actual_consumed": 90,
+    "remaining_quantity": 5,
+    "status": "Evaluated",
+    "notes": "Excellent accuracy. Food ran until 6:55 PM without shortage."
+  },
+  {
+    "id": "pred-3",
+    "date": "2026-10-28",
+    "day": "Wednesday",
+    "weather": "Cloudy",
+    "snack_type": "Veg Cutlet",
+    "student_count": 83,
+    "recommended_quantity": 90,
+    "actual_prepared": 90,
+    "actual_consumed": 84,
+    "remaining_quantity": 6,
+    "status": "Evaluated",
+    "notes": "Veg cutlet batch was accurate; 6 pieces remained at 7:00 PM."
+  }
+]
