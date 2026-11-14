@@ -12,8 +12,8 @@ import {
 export default function Navbar({ activeTab, setActiveTab, onOpenFieldwork }) {
   const tabs = [
     { id: 'predict', label: "⚡ Cook's Predictor", icon: Flame },
-    { id: 'overview', label: '📊 Overview', icon: LayoutDashboard },
-    { id: 'analytics', label: '📈 Demand Analytics', icon: BarChart3 },
+    { id: 'overview', label: '📊 Dashboard Overview', icon: LayoutDashboard },
+    { id: 'analytics', label: '📈 Analytics & Evaluation', icon: BarChart3 },
     { id: 'records', label: '📋 Fieldwork Data (24 Days)', icon: Database },
     { id: 'history', label: '🕒 Prediction History', icon: History },
   ];
@@ -27,11 +27,11 @@ export default function Navbar({ activeTab, setActiveTab, onOpenFieldwork }) {
           </div>
           <div>
             <div className="brand-title">
-              MessMate
-              <span className="brand-tag">Hostel Mess Edition</span>
+              SERVESMART
+              <span className="brand-tag">Hostel Mess System</span>
             </div>
             <div className="brand-subtitle">
-              Smart Food Demand & Evening Snack Batch Prediction for Hostel Cooks
+              Smart Food Demand & Batch Prediction System for Hostel Cooks
             </div>
           </div>
         </div>

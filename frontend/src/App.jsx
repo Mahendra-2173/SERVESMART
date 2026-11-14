@@ -90,10 +90,10 @@ export default function App() {
 
       <footer className="app-footer">
         <div>
-          <strong>MessMate</strong> — Smart Food Demand & Batch Prediction System • Tailored for Rameshwar Prasad (Head Cook, Block 3 Kaveri Mess)
+          <strong>SERVESMART</strong> — Smart Food Demand & Batch Prediction System • Built for Rameshwar Prasad (Head Cook, Block 3 Kaveri Mess)
         </div>
         <div style={{ fontSize: '0.78rem', marginTop: 4 }}>
-          Fieldwork Dataset: 24 Verified Sessions • Explainable Proportional Estimation Engine • Zero Food Wastage & Stockout Prevention
+          Fieldwork Dataset: 24 Verified Sessions • Explainable Proportional Heuristic Engine • Zero Food Wastage & Stockout Prevention
         </div>
       </footer>
 

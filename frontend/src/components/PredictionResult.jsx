@@ -7,7 +7,9 @@ import {
   Info, 
   ChevronDown, 
   ChevronUp,
-  AlertTriangle 
+  AlertTriangle,
+  ShieldCheck,
+  Layers
 } from 'lucide-react';
 
 export default function PredictionResult({ 
@@ -28,7 +30,7 @@ export default function PredictionResult({
           No Prediction Generated Yet
         </h3>
         <p style={{ fontSize: '0.88rem', color: '#64748b', maxWidth: 360, margin: '8px auto 0' }}>
-          Enter today's weather and 5:00 PM – 6:00 PM student entry count on the left, then click "Generate Preparation Recommendation".
+          Enter today's weather and 5:00 PM – 6:00 PM student entrance headcount on the left, then click "Generate Preparation Recommendation".
         </p>
       </div>
     );
@@ -67,21 +69,33 @@ export default function PredictionResult({
             <span className="hero-sub-val">
               {prediction.estimated_demand_min} – {prediction.estimated_demand_max}
             </span>
-            <span className="hero-sub-lbl">Estimated Demand</span>
+            <span className="hero-sub-lbl">Estimated Student Demand</span>
           </div>
           <div className="hero-sub-item">
             <span className="hero-sub-val">
               ~{prediction.expected_leftover} portions
             </span>
-            <span className="hero-sub-lbl">Safe Kitchen Buffer</span>
+            <span className="hero-sub-lbl">Expected Leftover Buffer</span>
           </div>
+        </div>
+
+        {/* Applied Config Indicators */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 14, fontSize: '0.76rem', color: '#7c2d12', fontWeight: 600 }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <ShieldCheck size={14} />
+            Buffer: +{prediction.safety_buffer_applied} portions
+          </span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <Layers size={14} />
+            Batch Sizing: {prediction.batch_size_applied} portions
+          </span>
         </div>
       </div>
 
       {/* Meta indicators */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
         <div>
-          <span style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: 600 }}>Historical Comparison: </span>
+          <span style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: 600 }}>Historical Reference: </span>
           <span style={{ fontSize: '0.85rem', color: '#0f172a', fontWeight: 700 }}>
             {prediction.comparison_text}
           </span>

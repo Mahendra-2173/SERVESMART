@@ -11,8 +11,23 @@ export const api = {
     return res.json();
   },
 
+  async getDashboard() {
+    const res = await fetch(`${API_BASE}/dashboard`);
+    return res.json();
+  },
+
   async getAnalytics() {
     const res = await fetch(`${API_BASE}/analytics`);
+    return res.json();
+  },
+
+  async getEvaluation() {
+    const res = await fetch(`${API_BASE}/evaluation`);
+    return res.json();
+  },
+
+  async getValidation() {
+    const res = await fetch(`${API_BASE}/validate`);
     return res.json();
   },
 

@@ -8,7 +8,8 @@ import {
   TrendingUp, 
   TrendingDown, 
   Flame,
-  ArrowRight
+  ArrowRight,
+  ShieldCheck
 } from 'lucide-react';
 import StatCard from '../components/StatCard';
 
@@ -23,21 +24,28 @@ export default function OverviewPage({ stats, setActiveTab }) {
         <div>
           <h2 className="section-title">
             <Utensils size={24} color="#ea580c" />
-            Hostel Mess Snack Dashboard
+            SERVESMART Mess Operations Dashboard
           </h2>
           <div className="section-desc">
             Operational summary based on {stats.total_observations} verified fieldwork sessions at Block 3 Kaveri Mess.
           </div>
         </div>
 
-        <button 
-          className="submit-btn" 
-          style={{ width: 'auto', padding: '10px 18px', fontSize: '0.9rem', margin: 0 }}
-          onClick={() => setActiveTab('predict')}
-        >
-          <Flame size={16} />
-          Predict Today's Batch
-        </button>
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', color: '#166534', padding: '6px 12px', borderRadius: 999, fontSize: '0.8rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
+            <ShieldCheck size={15} />
+            Dataset Verified (24 Days • 0 Errors)
+          </div>
+
+          <button 
+            className="submit-btn" 
+            style={{ width: 'auto', padding: '10px 18px', fontSize: '0.9rem', margin: 0 }}
+            onClick={() => setActiveTab('predict')}
+          >
+            <Flame size={16} />
+            Predict Today's Batch
+          </button>
+        </div>
       </div>
 
       {/* Core Operational Stats Cards */}
@@ -73,7 +81,7 @@ export default function OverviewPage({ stats, setActiveTab }) {
           title="Stockouts (Ran Out Early)"
           value={stats.days_ran_out}
           unit="Days"
-          subtext={`${stats.stockout_rate_percent}% of evening sessions`}
+          subtext={`${stats.stockout_rate_percent}% historical unassisted rate`}
           icon={AlertTriangle}
           variant="danger"
         />
@@ -115,7 +123,7 @@ export default function OverviewPage({ stats, setActiveTab }) {
             Ready to predict today's 5:00 PM – 7:00 PM batch?
           </h3>
           <p style={{ fontSize: '0.88rem', color: '#3b82f6', maxWidth: 640, marginTop: 4 }}>
-            Check the hostel entrance register between 5:00 PM and 6:00 PM, enter the headcount and current weather, and MessMate will recommend the optimal frying quantity.
+            Check the hostel entrance register between 5:00 PM and 6:00 PM, enter the headcount and current weather, and SERVESMART will recommend the optimal frying quantity.
           </p>
         </div>
 

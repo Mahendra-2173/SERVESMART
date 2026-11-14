@@ -9,6 +9,8 @@ export default function PredictPage({ onPredictionLogged }) {
     weather: 'Sunny',
     student_count: 82,
     snack_type: 'Samosa',
+    safety_buffer: 4,
+    batch_size: 5,
   });
 
   const [prediction, setPrediction] = useState(null);
@@ -26,6 +28,8 @@ export default function PredictPage({ onPredictionLogged }) {
         weather: formData.weather,
         student_count: parseInt(formData.student_count, 10),
         snack_type: formData.snack_type,
+        safety_buffer: formData.safety_buffer,
+        batch_size: formData.batch_size,
       });
 
       if (!res.success) {
